@@ -1,0 +1,5 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:new_image, scope: :content) %>
+<% end %>
+
+<%= render 'form', resource: @image %>

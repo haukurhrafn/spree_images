@@ -1,0 +1,5 @@
+<% if can? :admin, Spree::Image %>
+  <ul class="nav nav-sidebar">
+    <%= tab Spree::Image, url: spree.admin_images_url, icon: 'picture', label: Spree.t(:images) %>
+  </ul>
+<% end %>

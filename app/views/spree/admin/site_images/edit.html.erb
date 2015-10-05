@@ -1,0 +1,5 @@
+<% content_for :page_name do %>
+  <%= Spree.t(:editing_resource, resource: Spree::Image.model_name.human) %>
+<% end %>
+
+<%= render 'form', resource: @image %>
