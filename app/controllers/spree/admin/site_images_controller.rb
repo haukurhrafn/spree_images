@@ -7,6 +7,12 @@ module Spree
         respond_with(@images)
       end
 
+      def edit
+        binding.pry
+        @image = Spree::Image.find(params[:id])
+        respond_with(@image)
+      end
+
       protected
 
 
@@ -29,7 +35,7 @@ module Spree
 
 
 
-      # def load_resource
+      def load_resource
       #   binding.pry
       #   # if member_action?
       #   #   @object ||= load_resource_instance
@@ -48,7 +54,7 @@ module Spree
 
       #   #   instance_variable_set("@site_images", @collection)
       #   # end
-      # end
+      end
 
       private
 
