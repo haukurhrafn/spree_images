@@ -3,8 +3,7 @@ module Spree
     class SiteImagesController < ResourceController
 
       def index
-        @images = Spree::Image.all
-        respond_with(@images)
+        @images = Spree::Image.where(viewable_type: nil)
       end
 
       def edit
