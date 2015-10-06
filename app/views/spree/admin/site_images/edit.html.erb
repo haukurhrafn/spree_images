@@ -1,5 +1,34 @@
+<% resource = @image %>
+
 <% content_for :page_name do %>
   <%= Spree.t(:editing_resource, resource: Spree::Image.model_name.human) %>
 <% end %>
 
-<%= render 'form', resource: @image %>
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @image } %>
+
+<%= form_for [:admin, resource] do |f| %>
+  <div data-hook="edit_site_image" class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title">
+        <%= @image.attachment.url.split("?")[0] %>
+      </h1>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <div data-hook="thumbnail" class="col-md-3 text-center">
+          <%= f.label Spree.t(:thumbnail) %>
+          <%= link_to image_tag(@image.attachment.url(:small)), @image.attachment.url %>
+        </div>
+        <div class="col-md-9">
+          <%= render 'form', f: f, resource: resource %>
+        </div>
+
+        <div class="form-actions" data-hook="buttons">
+          <%= button Spree.t('actions.update'), 'save' %>
+          <span class="or"><%= Spree.t(:or) %></span>
+          <%= button_link_to Spree.t('actions.cancel'), admin_images_path, id: 'cancel_link', icon: 'delete' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

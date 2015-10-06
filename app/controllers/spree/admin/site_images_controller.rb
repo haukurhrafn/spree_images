@@ -8,9 +8,42 @@ module Spree
       end
 
       def edit
-        binding.pry
         @image = Spree::Image.find(params[:id])
         respond_with(@image)
+      end
+
+      def new
+        @image = Spree::Image.new
+        respond_with(@image)
+      end
+
+      def create
+        authorize! :create, Spree::Image
+        @image = Spree::Image.new
+        @image.attachment = params["image"]["attachment"]
+        if @image.save
+          # respond_with(admin_image_path(@image), status: 201, default_template: :edit)
+          # redirect_to admin_image_path(@image), status: 201, default_template: :edit
+          redirect_to edit_admin_image_path(@image)
+        else
+          return render @image
+        end
+      end
+
+      def update
+        @image = Spree::Image.find(params["id"])
+        @image.attachment = params["image"]["attachment"]
+        if @image.save
+          redirect_to admin_image_path(@image), status: 201, default_template: :edit
+        else
+          return render @image
+        end
+      end
+
+      def destroy
+        @image = Spree::Image.find(params["id"])
+        @image.destroy
+        redirect_to admin_images_path
       end
 
       protected

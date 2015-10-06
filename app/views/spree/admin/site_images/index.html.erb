@@ -30,7 +30,12 @@
           <td class="text-center"><%#= content_tag(:i, '', class: 'icon icon-ok') if image.visible %></td>
           <td class="actions text-right" data-hook="admin_images_index_row_actions">
             <%= link_to_edit image, no_text: true %>
-            <%= link_to_delete image, no_text: true %>
+            <%
+              options = {}
+              options[:class] = "btn btn-danger btn-sm delete-resource"
+              options[:data] = { confirm: Spree.t(:are_you_sure), action: 'remove' }
+            %>
+            <%= link_to_with_icon 'delete', '', admin_image_path(image), options %>
           </td>
         </tr>
       <% end %>
