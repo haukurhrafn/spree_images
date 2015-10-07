@@ -10,7 +10,7 @@
   <div data-hook="edit_site_image" class="panel panel-default">
     <div class="panel-heading">
       <h1 class="panel-title">
-        <%= @image.attachment.url.split("?")[0] %>
+        <%= @image.attachment.url(:original).split("?")[0] %>
       </h1>
     </div>
     <div class="panel-body">
