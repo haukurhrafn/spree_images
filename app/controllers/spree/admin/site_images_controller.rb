@@ -25,17 +25,20 @@ module Spree
           # redirect_to admin_image_path(@image), status: 201, default_template: :edit
           redirect_to edit_admin_image_path(@image)
         else
-          return render @image
+          flash[:error] = @image.errors.full_messages.first
+          return render :new
         end
       end
 
       def update
         @image = Spree::Image.find(params["id"])
+        # TODO: BUG HERE - why is the attachment not set on update? Can't update image
         @image.attachment = params["image"]["attachment"]
         if @image.save
           redirect_to admin_image_path(@image), status: 201, default_template: :edit
         else
-          return render @image
+          flash[:error] = @image.errors.full_messages.first
+          return render :edit
         end
       end
 
