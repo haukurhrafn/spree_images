@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_images'
-  s.version     = '3.0.1'
+  s.version     = '3.1.0'
   s.summary     = 'CMS controls for uploading general site images used within editable content areas'
   s.description = 'Spree images is a CMS tool for uploading images for the shop site to be used within editable areas of the site.'
   s.required_ruby_version = '>= 2.0.0'
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 3.0.1'
+  s.add_dependency 'spree_core', '~> 3.1'
 
   s.add_development_dependency 'capybara', '~> 2.4'
   s.add_development_dependency 'coffee-rails'
